@@ -13,3 +13,37 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
 </head>
+
+<body>
+  <header>
+    <h1>Movies</h1>
+  </header>
+  <div id="movies">
+  </div>
+  <script type="module" src="script.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</body>
+
+
+<body>  
+
+  <div class="navBar">
+    <label for="movie">Choose a movie:</label> 
+    <select id="movie" opnchange="getMovie()">
+      <option value="109445">Frozen</option>
+      <option value="211672">Minions</option>
+      <option value="9502">Kung Fu Panda</option>
+      <option value="953">Madagascar</option>
+      <option value="10882">Sleeping beauty</option>
+      <option value="459151">Boss Baby</option>
+      <option value="82690">Wreck it ralph</option>
+      <option value="269149">Zootopia</option>
+      <option value="718930">Bullet train</option>
+      <option value="588">Silent hill</option>
+    </select>
+      <button onclick="getMovie()">Get</button>
+  </div>
+</body>
+
+</html>
