@@ -12,7 +12,7 @@ const createMovieTile = (id, poster, title, date, description) => {
   const h1 = document.createElement("h1");
   const h3 = document.createElement("h3");
   const h4 = document.createElement("h4");
-  const buy = document.createElement("button");
+  // const buy = document.createElement("button");
   const trailer = document.createElement("button");
 
   tile.classList.add("tile");
@@ -20,17 +20,17 @@ const createMovieTile = (id, poster, title, date, description) => {
   h1.innerText = title;
   h3.innerText = date;
   h4.innerText = description;
-  buy.innerText = "Buy";
+  // buy.innerText = "Buy";
   trailer.innerText = "Trailer";
 
-  buy.addEventListener('click', () => {
-    cartContents.add(id);
-    const cart = document.getElementById("cart");
-    cart.innerHTML = `Your cart contains ${cartContents.size}movies`;
-  })
+  // buy.addEventListener('click', () => {
+  //   cartContents.add(id);
+  //   const cart = document.getElementById("cart");
+  //   cart.innerHTML = `Your cart contains ${cartContents.size}movies;
+  // })
 
   trailer.addEventListener('click', async () => {
-    const trailersData = await getTMDBData(`https://api.themoviedb.org/3//movie/${id}/videos?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
+    const trailersData = await getTMDBData(`https://api.themoviedb.org/3//movie/${id}?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
     );
 
     const trailer = trailersData.results.filter((trailer) => {
@@ -48,7 +48,7 @@ const createMovieTile = (id, poster, title, date, description) => {
 
   tile.append(img);
   tile.append(details);
-  tile.append(buy);
+  // tile.append(buy);
   tile.append(trailer);
   return tile;
 
@@ -65,7 +65,7 @@ function clearDiv(id) {
 
 async function getData(id) {
   let movie = await getTMDBData(
-    `https://api.themoviedb.org/3//movie/${id}/videos?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
+    `https://api.themoviedb.org/3//movie/${id}?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
   );
   const tile = createMovieTile(
     movie.id,
