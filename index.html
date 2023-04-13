@@ -7,11 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script type="module" src="./script.js"></script>
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
+    rel="stylesheet"> -->
 </head>
 
 <body>
@@ -20,30 +21,31 @@
   </header>
   <div id="movies">
   </div>
-  <script type="module" src="script.js"></script>
+  <!-- <script type="module" src="script.js"></script> -->
   <script
     src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 </body>
-
 
 <body>  
 
   <div class="navBar">
     <label for="movie">Choose a movie:</label> 
-    <select id="movie" opnchange="getMovie()">
-      <option value="109445">Frozen</option>
-      <option value="211672">Minions</option>
-      <option value="9502">Kung Fu Panda</option>
-      <option value="953">Madagascar</option>
-      <option value="10882">Sleeping beauty</option>
-      <option value="459151">Boss Baby</option>
-      <option value="82690">Wreck it ralph</option>
-      <option value="269149">Zootopia</option>
-      <option value="718930">Bullet train</option>
-      <option value="588">Silent hill</option>
+    <select id="movie" opnchange="getMovie">
+      <option value="505642">Black Panther: Wakanda Forever</option>
+      <option value="980078">Winnie the Pooh: Blood and Honey</option>
+      <option value="1033219">Attack on Titan</option>
+      <option value="677179">Creed III</option>
+      <option value="594767">Shazam! Fury of the Gods</option>
+      <option value="640146">Ant-Man and the Wasp: Quantumania</option>
+      <option value="1077280">Die Hart</option>
+      <option value="758009">Shotgun Wedding</option>
+      <option value="1112329">Omar</option>
+      <option value="315162">Puss in Boots: The Last Wish</option>
     </select>
-      <button onclick="getMovie()">Get</button>
+      <button id="getMovie">Get</button>
   </div>
+  <div class="mContainer" id ="mContainer"></div>
+  <div class="pContainer" id="pContainer"></div>
+  <div id="movies"></div>
 </body>
-
 </html>
