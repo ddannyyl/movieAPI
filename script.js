@@ -1,5 +1,4 @@
 import { TMDB_API_KEY } from "./key.js";
-const cartContents = new Set();
 const movies = document.getElementById("movies");
 const getTMDBData = async (url) => {
   return (await axios.get(url)).data;
@@ -12,7 +11,6 @@ const createMovieTile = (id, poster, title, date, description) => {
   const h1 = document.createElement("h1");
   const h3 = document.createElement("h3");
   const h4 = document.createElement("h4");
-  // const buy = document.createElement("button");
   const trailer = document.createElement("button");
 
   tile.classList.add("tile");
@@ -20,14 +18,7 @@ const createMovieTile = (id, poster, title, date, description) => {
   h1.innerText = title;
   h3.innerText = date;
   h4.innerText = description;
-  // buy.innerText = "Buy";
   trailer.innerText = "Trailer";
-
-  // buy.addEventListener('click', () => {
-  //   cartContents.add(id);
-  //   const cart = document.getElementById("cart");
-  //   cart.innerHTML = `Your cart contains ${cartContents.size}movies;
-  // })
 
   trailer.addEventListener('click', async () => {
     const trailersData = await getTMDBData(`https://api.themoviedb.org/3//movie/${id}?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
@@ -45,10 +36,8 @@ const createMovieTile = (id, poster, title, date, description) => {
   details.append(h1);
   details.append(h3);
   details.append(h4);
-
   tile.append(img);
   tile.append(details);
-  // tile.append(buy);
   tile.append(trailer);
   return tile;
 
@@ -77,7 +66,6 @@ async function getData(id) {
   );
   movies.appendChild(tile);
 }
-
 
 document.getElementById("getMovie").addEventListener("click", (e) => {
   clearDiv("movies");
