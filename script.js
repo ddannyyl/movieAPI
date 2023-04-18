@@ -21,12 +21,15 @@ const createMovieTile = (id, poster, title, date, description) => {
   trailer.innerText = "Trailer";
 
   trailer.addEventListener('click', async () => {
-    const trailersData = await getTMDBData(`https://api.themoviedb.org/3//movie/${id}?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
+    const trailersData = await getTMDBData(`https://api.themoviedb.org/3//movie/${id}/videos?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
     );
+   
+
 
     const trailer = trailersData.results.filter((trailer) => {
       return trailer.type === "Trailer";
     });
+ 
 
     !trailer.length
       ? alert("Sorry! No trailers for this film.")
