@@ -4,7 +4,7 @@ const getTMDBData = async (url) => {
   return (await axios.get(url)).data;
 }
 
-const createMovieTile = (id, poster, title, date, description) => {
+const createMovieTile = (id, poster, title, date, description, runtime, voteAverage, voteCount, expense) => {
   const tile = document.createElement("div");
   const details = document.createElement("div");
   const img = document.createElement("img");
@@ -12,6 +12,10 @@ const createMovieTile = (id, poster, title, date, description) => {
   const h3 = document.createElement("h3");
   const h4 = document.createElement("h4");
   const trailer = document.createElement("button");
+  const time= document.createElement("h5");
+  const average = document.createElement ("h5");
+  const count = document.createElement("h5");
+  const money = document.createElement("h5");
 
   tile.classList.add("tile");
   img.src = `https://image.tmdb.org/t/p/original/${poster}`;
@@ -19,6 +23,11 @@ const createMovieTile = (id, poster, title, date, description) => {
   h3.innerText = date;
   h4.innerText = description;
   trailer.innerText = "Trailer";
+  time.innerText = `Movie runtime: ${runtime} mins`;
+  average.innerText = `Average rating: ${voteAverage}/10`;
+  count.innerText = `${voteCount} votes`;
+  money.innerText = `Budget: $${expense}`;
+
 
   trailer.addEventListener('click', async () => {
     const trailersData = await getTMDBData(`https://api.themoviedb.org/3//movie/${id}/videos?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
@@ -39,6 +48,12 @@ const createMovieTile = (id, poster, title, date, description) => {
   details.append(h1);
   details.append(h3);
   details.append(h4);
+  details.append(time);
+  details.append(average);
+  details.append(count);
+  details.append(money);
+
+
   tile.append(img);
   tile.append(details);
   tile.append(trailer);
@@ -65,7 +80,10 @@ async function getData(id) {
     movie.title,
     movie.release_date,
     movie.overview,
-    movie.revenue
+    movie.runtime,
+    movie.vote_average,
+    movie.vote_count,
+    movie.budget
   );
   movies.appendChild(tile);
 }
