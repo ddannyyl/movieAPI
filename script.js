@@ -4,7 +4,7 @@ const getTMDBData = async (url) => {
   return (await axios.get(url)).data;
 }
 
-const createMovieTile = (id, poster, title, date, description, runtime, voteAverage, voteCount, expense) => {
+const createMovieTile = (id, poster, title, date, description, runtime, voteAverage, voteCount, expense, productionCompany, category) => {
   const tile = document.createElement("div");
   const details = document.createElement("div");
   const img = document.createElement("img");
@@ -16,6 +16,9 @@ const createMovieTile = (id, poster, title, date, description, runtime, voteAver
   const average = document.createElement ("h5");
   const count = document.createElement("h5");
   const money = document.createElement("h5");
+  const production = document.createElement("h5");
+  const sort = document.createElement("h5");
+  
 
   tile.classList.add("tile");
   img.src = `https://image.tmdb.org/t/p/original/${poster}`;
@@ -27,22 +30,21 @@ const createMovieTile = (id, poster, title, date, description, runtime, voteAver
   average.innerText = `Average rating: ${voteAverage}/10`;
   count.innerText = `${voteCount} votes`;
   money.innerText = `Budget: $${expense}`;
+  production.innerText = `Production Company: ${productionCompany}`;
+  sort.innerText = `Genre: ${category}`;
 
 
   trailer.addEventListener('click', async () => {
     const trailersData = await getTMDBData(`https://api.themoviedb.org/3//movie/${id}/videos?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
     );
-   
-
-
+  
     const trailer = trailersData.results.filter((trailer) => {
       return trailer.type === "Trailer";
     });
  
-
     !trailer.length
       ? alert("Sorry! No trailers for this film.")
-      : window.open(`https://www.youtube.com/watch?v=${trailer.at(0).key}`)
+      : window.open(`https://www.youtube.com/watch?v=${trailer[0].key}`)
   })
 
   details.append(h1);
@@ -52,7 +54,8 @@ const createMovieTile = (id, poster, title, date, description, runtime, voteAver
   details.append(average);
   details.append(count);
   details.append(money);
-
+  details.append(production);
+  details.append(sort);
 
   tile.append(img);
   tile.append(details);
@@ -74,6 +77,11 @@ async function getData(id) {
   let movie = await getTMDBData(
     `https://api.themoviedb.org/3//movie/${id}?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
   );
+  let productionCompanies = await getTMDBData(
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${TMDB_API_KEY}&language=en-US`
+  );
+  const productionCompany = movie.production_companies[0].name;
+  const category = movie.genres[0].name;
   const tile = createMovieTile(
     movie.id,
     movie.poster_path,
@@ -83,11 +91,12 @@ async function getData(id) {
     movie.runtime,
     movie.vote_average,
     movie.vote_count,
-    movie.budget
+    movie.budget,
+    productionCompany,
+    category
   );
   movies.appendChild(tile);
-}
-
+  }
 document.getElementById("getMovie").addEventListener("click", (e) => {
   clearDiv("movies");
   let movieId = document.getElementById("options").value;
