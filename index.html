@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="./script.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
-  <script type="module" src="./script.js"></script>
-</head>
-
-<body>  
-  <header>
-    <h1>Movies</h1>
-  </header>
-  <div id="movies"></div>
-  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-  <div class="navBar">
-    <label for="movie">Choose a movie:</label> 
-    <select id="options">
-      <option value="505642">Black Panther: Wakanda Forever</option>
-      <option value="980078">Winnie the Pooh: Blood and Honey</option>
-      <option value="1033219">Attack on Titan</option>
-      <option value="677179">Creed III</option>
-      <option value="594767">Shazam! Fury of the Gods</option>
-      <option value="640146">Ant-Man and the Wasp: Quantumania</option>
-      <option value="1077280">Die Hart</option>
-      <option value="758009">Shotgun Wedding</option>
-      <option value="76600">Avatar: The Way of Water</option>
-      <option value="315162">Puss in Boots: The Last Wish</option>
-    </select>
+  <body>
+    <header>
+      <h1>Movies</h1>
+    </header>
+    <div id="movies"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <div class="navBar">
+      <label for="movie">Choose a movie:</label>
+      <select id="options">
+        <option value="505642">Black Panther: Wakanda Forever</option>
+        <option value="980078">Winnie the Pooh: Blood and Honey</option>
+        <option value="1033219">Attack on Titan</option>
+        <option value="677179">Creed III</option>
+        <option value="594767">Shazam! Fury of the Gods</option>
+        <option value="640146">Ant-Man and the Wasp: Quantumania</option>
+        <option value="1077280">Die Hart</option>
+        <option value="758009">Shotgun Wedding</option>
+        <option value="76600">Avatar: The Way of Water</option>
+        <option value="315162">Puss in Boots: The Last Wish</option>
+      </select>
       <button id="getMovie">Get</button>
-      
-  </div>
-</body>
+    </div>
+  </body>
 </html>

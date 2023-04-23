@@ -2,9 +2,21 @@ import { TMDB_API_KEY } from "./key.js";
 const movies = document.getElementById("movies");
 const getTMDBData = async (url) => {
   return (await axios.get(url)).data;
-}
+};
 
-const createMovieTile = (id, poster, title, date, description, runtime, voteAverage, voteCount, expense, productionCompany, category) => {
+const createMovieTile = (
+  id,
+  poster,
+  title,
+  date,
+  description,
+  runtime,
+  voteAverage,
+  voteCount,
+  expense,
+  productionCompany,
+  category
+) => {
   const tile = document.createElement("div");
   const details = document.createElement("div");
   const img = document.createElement("img");
@@ -12,13 +24,12 @@ const createMovieTile = (id, poster, title, date, description, runtime, voteAver
   const h3 = document.createElement("h3");
   const h4 = document.createElement("h4");
   const trailer = document.createElement("button");
-  const time= document.createElement("h5");
-  const average = document.createElement ("h5");
+  const time = document.createElement("h5");
+  const average = document.createElement("h5");
   const count = document.createElement("h5");
   const money = document.createElement("h5");
   const production = document.createElement("h5");
   const sort = document.createElement("h5");
-  
 
   tile.classList.add("tile");
   img.src = `https://image.tmdb.org/t/p/original/${poster}`;
@@ -33,19 +44,19 @@ const createMovieTile = (id, poster, title, date, description, runtime, voteAver
   production.innerText = `Production Company: ${productionCompany}`;
   sort.innerText = `Genre: ${category}`;
 
-
   trailer.classList.add("trailer");
-  trailer.addEventListener('click', async () => {
-    const trailersData = await getTMDBData(`https://api.themoviedb.org/3//movie/${id}/videos?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
+  trailer.addEventListener("click", async () => {
+    const trailersData = await getTMDBData(
+      `https://api.themoviedb.org/3//movie/${id}/videos?api_key=${TMDB_API_KEY}&language=en-US&adult=false`
     );
-   const trailer = trailersData.results.filter((trailer) => {
+    const trailer = trailersData.results.filter((trailer) => {
       return trailer.type === "Trailer";
     });
 
     !trailer.length
       ? alert("Sorry! No trailers for this film.")
-      : window.open(`https://www.youtube.com/watch?v=${trailer[0].key}`)
-  })
+      : window.open(`https://www.youtube.com/watch?v=${trailer[0].key}`);
+  });
   details.append(h1);
   details.append(h3);
   details.append(h4);
@@ -60,7 +71,7 @@ const createMovieTile = (id, poster, title, date, description, runtime, voteAver
   tile.append(details);
   tile.append(trailer);
   return tile;
-}
+};
 
 function clearDiv(id) {
   let checkEmpty = document.getElementById(id).innerHTML === "";
@@ -96,7 +107,7 @@ async function getData(id) {
   );
 
   movies.appendChild(tile);
-  }
+}
 
 document.getElementById("getMovie").addEventListener("click", (e) => {
   clearDiv("movies");
